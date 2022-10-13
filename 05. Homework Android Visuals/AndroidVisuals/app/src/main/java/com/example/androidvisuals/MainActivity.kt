@@ -33,12 +33,16 @@ class MainActivity : AppCompatActivity() {
         button = binding.changeButton
         image = binding.image
 
-        binding.clickCount = "0"
+//        binding.clickCount = "0"
+        binding.clickCount = resources.getResourceEntryName(R.drawable.ic_launcher_background)
 
         button.setOnClickListener {
-            clicksCount++
-            binding.clickCount = clicksCount.toString()
-            image.setImageResource(images[Random().nextInt(images.size)])
+            val imageIndex: Int = images[Random().nextInt(images.size)]
+            val imageName: String = resources.getResourceEntryName(imageIndex)
+//            clicksCount++
+//            binding.clickCount = clicksCount.toString()
+            binding.clickCount = imageName
+            image.setImageResource(imageIndex)
         }
     }
 }
