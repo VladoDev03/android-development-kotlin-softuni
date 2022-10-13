@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Android Visuals</string>
+    <string name="image_description">Random Image</string>
+    <string name="main_button">Change Image</string>
+</resources>
