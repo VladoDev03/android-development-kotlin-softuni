@@ -24,9 +24,9 @@ class SecondActivity : AppCompatActivity() {
 //        transaction.addToBackStack("first_transaction")
 //        transaction.commit()
 
-        val action = FirstFragmentDirections.actionFirstFragment()
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.container) as NavHostFragment
-        navHostFragment.navController.navigate(action)
+//        val action = FirstFragmentDirections.actionFirstFragment()
+//        val navHostFragment = supportFragmentManager.findFragmentById(R.id.container) as NavHostFragment
+//        navHostFragment.navController.navigate(action)
 
         val titleText: TextView = binding.titleText
         val backButton: Button = binding.backButton

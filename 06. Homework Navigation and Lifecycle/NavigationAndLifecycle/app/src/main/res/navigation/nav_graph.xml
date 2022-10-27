@@ -9,9 +9,9 @@
         android:name="com.example.navigationandlifecycle.fragments.FirstFragment"
         android:label="FirstFragment">
 
-        <action
-            android:id="@+id/action_first_fragment"
-            app:destination="@id/firstFragment"/>
+<!--        <action-->
+<!--            android:id="@+id/action_first_fragment"-->
+<!--            app:destination="@id/firstFragment"/>-->
 
         <action
             android:id="@+id/action_first_fragment_to_second_fragment"
@@ -59,6 +59,8 @@
 
         <action
             android:id="@+id/action_fifth_fragment_to_first_fragment"
-            app:destination="@id/firstFragment"/>
+            app:destination="@id/firstFragment"
+            app:popUpTo="@id/firstFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
 </navigation>
