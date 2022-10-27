@@ -2,4 +2,8 @@
     <string name="app_name">NavigationAndLifecycle</string>
     <string name="next_button">Next</string>
     <string name="back_button">Back</string>
+    <string name="first_fragment">First Fragment</string>
+    <string name="second_fragment">Second Fragment</string>
+    <string name="next_fragment">Next Fragment</string>
+    <string name="back_to_first">Back to First</string>
 </resources>
