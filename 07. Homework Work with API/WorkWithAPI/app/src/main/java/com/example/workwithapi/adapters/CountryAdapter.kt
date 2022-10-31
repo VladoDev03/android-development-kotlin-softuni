@@ -1,7 +1,9 @@
 package com.example.workwithapi.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.workwithapi.R
@@ -21,6 +23,11 @@ class CountryAdapter(val countries: List<Country>): RecyclerView.Adapter<Country
 
     override fun onBindViewHolder(holder: CountryViewHolder, position: Int) {
         val currentCountry = countries[position]
+
+        holder.binding.root.setOnClickListener {
+            val country: Country = countries[position]
+            println("https://restcountries.com/v2/name/${country.name}")
+        }
 
         holder.binding.apply {
             country = currentCountry.name
