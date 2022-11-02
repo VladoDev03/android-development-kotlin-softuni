@@ -41,6 +41,7 @@ class CountryAdapter(val countries: List<Country>): RecyclerView.Adapter<Country
 
             val transaction =  activity.supportFragmentManager.beginTransaction()
                 .replace(R.id.container, CountryFragment(currentCountry.name))
+                .addToBackStack("first_transaction")
 
             transaction.commit()
         }

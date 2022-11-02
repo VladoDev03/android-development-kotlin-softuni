@@ -34,7 +34,7 @@ class CountryFragment(val countryName: String) : Fragment() {
         binding = FragmentCountryBinding.inflate(inflater, container, false)
 
         binding.backButton.setOnClickListener {
-//            activity?.supportFragmentManager?.popBackStack()
+            activity?.supportFragmentManager?.popBackStack()
             activity?.supportFragmentManager?.beginTransaction()?.detach(this)?.commit()
         }
 
