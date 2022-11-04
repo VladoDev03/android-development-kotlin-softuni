@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Local Storage</string>
+    <string name="back_button">Back</string>
+    <string name="capital_name">Capital:</string>
+    <string name="region">Region:</string>
+    <string name="population">Population:</string>
+    <string name="area">Area:</string>
+</resources>

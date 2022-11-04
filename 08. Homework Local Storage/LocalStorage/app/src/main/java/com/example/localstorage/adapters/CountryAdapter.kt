@@ -1,26 +1,17 @@
-package com.example.workwithapi.adapters
+package com.example.localstorage.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.workwithapi.R
-import com.example.workwithapi.activities.MainActivity
-import com.example.workwithapi.databinding.CountryListItemBinding
-import com.example.workwithapi.fragments.CountryFragment
-import com.example.workwithapi.models.Country
-import com.example.workwithapi.models.CountryInfo
-import com.example.workwithapi.repositories.CountryRepository
-import com.example.workwithapi.services.CountryService
-import okhttp3.OkHttpClient
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import com.example.localstorage.R
+import com.example.localstorage.activities.MainActivity
+import com.example.localstorage.databinding.CountryListItemBinding
+import com.example.localstorage.fragments.CountryFragment
+import com.example.localstorage.models.Country
 
 class CountryAdapter(val countries: List<Country>): RecyclerView.Adapter<CountryAdapter.CountryViewHolder>() {
 

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="country"
+            type="String" />
+
+        <variable
+            name="capital"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="12dp">
+
+        <ImageView
+            android:id="@+id/ivFlag"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_launcher_background" />
+
+        <TextView
+            android:id="@+id/tvCountry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:text="@{country}"
+            android:paddingLeft="8dp"
+            app:layout_constraintStart_toEndOf="@id/ivFlag"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Country Name" />
+
+        <TextView
+            android:id="@+id/tvCapital"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#000"
+            android:text="@{capital}"
+            android:paddingLeft="8dp"
+            app:layout_constraintStart_toEndOf="@id/ivFlag"
+            app:layout_constraintTop_toBottomOf="@id/tvCountry"
+            tools:text="Capital Name" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
