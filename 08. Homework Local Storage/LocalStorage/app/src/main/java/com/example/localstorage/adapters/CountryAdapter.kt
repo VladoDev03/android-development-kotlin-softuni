@@ -3,17 +3,14 @@ package com.example.localstorage.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation
-import androidx.navigation.fragment.NavHostFragment
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.localstorage.R
-import com.example.localstorage.activities.MainActivity
 import com.example.localstorage.databinding.CountryListItemBinding
 import com.example.localstorage.fragments.CountryFragment
-import com.example.localstorage.models.Country
+import com.example.localstorage.models.CountryInfo
 
-class CountryAdapter(val countries: List<Country>): RecyclerView.Adapter<CountryAdapter.CountryViewHolder>() {
+class CountryAdapter(val countries: List<CountryInfo>): RecyclerView.Adapter<CountryAdapter.CountryViewHolder>() {
 
     class CountryViewHolder(val binding: CountryListItemBinding): RecyclerView.ViewHolder(binding.root)
 
@@ -40,7 +37,7 @@ class CountryAdapter(val countries: List<Country>): RecyclerView.Adapter<Country
         holder.binding.apply {
             country = currentCountry.name
             capital = currentCountry.capital
-
+            
             Glide
                 .with(root.context)
                 .load(currentCountry.flags.png)

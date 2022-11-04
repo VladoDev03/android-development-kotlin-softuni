@@ -28,7 +28,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?android:colorBackground"
+        android:background="#fff"
         android:clickable="true"
         android:focusable="true"
         android:padding="12dp">
@@ -37,6 +37,7 @@
             android:id="@+id/ivFlag"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:src="@drawable/ic_launcher_foreground"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@drawable/ic_launcher_background" />
