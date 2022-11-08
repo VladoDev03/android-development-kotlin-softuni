@@ -4,13 +4,16 @@ import android.content.Context
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.room.Room
 import com.example.localstorage.CountryDatabase
 import com.example.localstorage.adapters.CountryAdapter
+import com.example.localstorage.daos.UpdateDao
 import com.example.localstorage.databinding.ActivityMainBinding
 import com.example.localstorage.entities.Country
+import com.example.localstorage.entities.Update
 import com.example.localstorage.models.CountryInfo
 import com.example.localstorage.models.Flag
 import com.example.localstorage.repositories.CountryRepository
@@ -19,11 +22,17 @@ import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
 import okhttp3.OkHttpClient
+import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.sql.Date
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.LocalTime
+import java.time.format.DateTimeFormatter
 
 
 class MainActivity : AppCompatActivity() {
@@ -34,6 +43,9 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        val timeView: TextView = binding.updateTime
+        val countriesCount: TextView = binding.countriesCount
+
         val isOnline: Boolean = isOnline(this)
 
         val db = Room.databaseBuilder(
@@ -43,11 +55,19 @@ class MainActivity : AppCompatActivity() {
         ).build()
 
         val countryDao = db.countryDao()
+        val updateDao = db.updateDao()
 
         if (!isOnline) {
             GlobalScope.async {
+                val update: Update = getUpdateTime(updateDao)
+
                 val countries = countryDao.getAll()
                 val countriesToAdd: ArrayList<CountryInfo> = ArrayList()
+
+                if (update != null) {
+                    timeView.text = "${update.lastDayUpdated} at ${update.lastTimeUpdated}"
+                    countriesCount.text = countries.size.toString()
+                }
 
                 for (it in countries) {
                     val country: CountryInfo = CountryInfo(
@@ -106,7 +126,11 @@ class MainActivity : AppCompatActivity() {
                         id++
                     }
 
-                    println("Success")
+                    val update: Update = getCurrentTime()
+                    println(update)
+
+                    timeView.text = "${update.lastDayUpdated} at ${update.lastTimeUpdated}"
+                    countriesCount.text = countries.size.toString()
 
                     GlobalScope.async {
                         if (countryDao.getAll().size > 0) {
@@ -114,6 +138,12 @@ class MainActivity : AppCompatActivity() {
                         }
 
                         countryDao.insertMany(countriesToAdd)
+
+                        if (updateDao.get() != null) {
+                            updateDao.update(update)
+                        } else {
+                            updateDao.insert(update)
+                        }
                     }
                 }
 
@@ -123,6 +153,21 @@ class MainActivity : AppCompatActivity() {
                 }
             })
         }
+    }
+
+    suspend fun getUpdateTime(updateDao: UpdateDao): Update {
+        val result: Update = updateDao.get()
+        return result
+    }
+
+    fun getCurrentTime(): Update {
+        val dayFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+        val timeFormatter = DateTimeFormatter.ofPattern("HH:mm")
+
+        val day = LocalDate.now().format(dayFormatter)
+        val time = LocalTime.now().format(timeFormatter)
+
+        return Update(1, day, time)
     }
 
     fun isOnline(context: Context): Boolean {

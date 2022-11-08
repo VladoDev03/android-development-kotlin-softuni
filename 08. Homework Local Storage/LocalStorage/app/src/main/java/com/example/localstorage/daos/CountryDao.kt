@@ -1,9 +1,6 @@
 package com.example.localstorage.daos
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.example.localstorage.entities.Country
 
 @Dao
@@ -19,4 +16,7 @@ interface CountryDao {
 
     @Query("DELETE FROM country")
     suspend fun deleteAll()
+
+    @Update
+    suspend fun update(update: Country)
 }
